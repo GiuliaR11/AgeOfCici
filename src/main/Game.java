@@ -1,5 +1,8 @@
 package main;
 
+import static org.lwjgl.glfw.GLFW.*;
+import static org.lwjgl.opengl.GL11.*;
+
 import entity.Entity;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.canvas.GraphicsContext;
@@ -12,16 +15,16 @@ public class Game {
 
 	private final int FPS = 60;
 	
-	private GraphicsContext gc;
+	public static GraphicsContext mainContext;
 	
-	public FXMLLoader fxmlLoader;
 	
+	float fl = 0.0f;
 	
 	Entity e = new Entity();
 
 	public Game() {
-		fxmlLoader = new FXMLLoader();
-		//gc = fxmlLoader.getController();
+		isRunning = true;
+		
 		
 	}
 	
@@ -32,10 +35,22 @@ public class Game {
 	}
 
 	
-	public void render() {
+	public void render(long window) {
 		
-		//e.render(gc);
-		
+		//e.render(mainContext);
+		/*
+		glClearColor(fl, 0f, 0f, 1.0f);
+		fl+=0.01;
+		if(fl >= 1)
+			fl = 0;
+		*/
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear the framebuffer
+
+		glfwSwapBuffers(window); // swap the color buffers
+
+		// Poll for window events. The key callback above will only be
+		// invoked during this call.
+		glfwPollEvents();
 	}
 		
 	
