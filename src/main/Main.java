@@ -47,9 +47,11 @@ public class Main {
 		glfwDefaultWindowHints(); // optional, the current window hints are already the default
 		glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE); // the window will stay hidden after creation
 		glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE); // the window will be resizable
-
+		
+		
+		
 		// Create the window
-		window = glfwCreateWindow(300, 300, "Hello World!", NULL, NULL);
+		window = glfwCreateWindow(300, 300, "Age of Cici", NULL, NULL);
 		if ( window == NULL )
 			throw new RuntimeException("Failed to create the GLFW window");
 
@@ -95,7 +97,7 @@ public class Main {
 		GL.createCapabilities();
 
 		
-		glClearColor(1.0f, 0.0f, 0.0f, 0.0f);
+	
 
 		
 		int updates=0,renders=0;
@@ -121,6 +123,8 @@ public class Main {
 			
 			game.render(window);
 			renders++;
+			
+			glfwPollEvents();
 			
 			t1 = System.currentTimeMillis();
 			

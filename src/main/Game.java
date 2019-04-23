@@ -31,26 +31,27 @@ public class Game {
 	public void update() {
 		
 		
-		
+		//
 	}
 
 	
 	public void render(long window) {
 		
 		//e.render(mainContext);
-		/*
+		
 		glClearColor(fl, 0f, 0f, 1.0f);
 		fl+=0.01;
 		if(fl >= 1)
 			fl = 0;
-		*/
+		
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear the framebuffer
 
 		glfwSwapBuffers(window); // swap the color buffers
 
 		// Poll for window events. The key callback above will only be
 		// invoked during this call.
-		glfwPollEvents();
+		
+	
 	}
 		
 	
