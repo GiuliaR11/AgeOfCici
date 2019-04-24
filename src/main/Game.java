@@ -3,62 +3,60 @@ package main;
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.*;
 
+import controllers.KeyboardInput;
 import entity.Entity;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.canvas.GraphicsContext;
-
+import static org.lwjgl.glfw.GLFW.*;
 
 
 public class Game {
 
 	private boolean isRunning;
+	private final int FPS = 30;
+	private final int WIDTH = 800;
+	private final int HEIGHT = (int)(9.0/16.0 * WIDTH);
+	private final long WINDOW;
 
-	private final int FPS = 60;
-	
-	public static GraphicsContext mainContext;
-	
-	
 	float fl = 0.0f;
-	
+	float spd = 0.05f;
 	Entity e = new Entity();
 
 	public Game() {
 		isRunning = true;
-		
+		WINDOW = Window.createWindow(WIDTH,HEIGHT);
 		
 	}
 	
 	public void update() {
+		glfwPollEvents();
 		
+		if(KeyboardInput.keys[GLFW_KEY_R])
+			fl += spd;			
+
+		if(KeyboardInput.keys[GLFW_KEY_ESCAPE])
+			isRunning = false;
 		
-		//
+		if(fl >= 1 || fl <= 0)
+			spd *= -1;
+		
 	}
 
 	
-	public void render(long window) {
+	public void render() {
 		
-		//e.render(mainContext);
 		
-		glClearColor(fl, 0f, 0f, 1.0f);
-		fl+=0.01;
-		if(fl >= 1)
-			fl = 0;
-		
+		glClearColor(fl, 1 - fl, fl, 1.0f);
+
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear the framebuffer
 
-		glfwSwapBuffers(window); // swap the color buffers
-
-		// Poll for window events. The key callback above will only be
-		// invoked during this call.
 		
-	
+		
+		glfwSwapBuffers(WINDOW);
 	}
 		
 	
 	public boolean getIsRunning() {
 		return isRunning;
 	}
-
 
 
 	public void setIsRunning(boolean isRunning) {
@@ -69,4 +67,15 @@ public class Game {
 		return FPS;
 	}
 	
+	public int getWIDTH() {
+		return WIDTH;
+	}
+
+	public int getHEIGHT() {
+		return HEIGHT;
+	}
+
+	public long getWINDOW() {
+		return WINDOW;
+	}
 }
