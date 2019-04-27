@@ -10,10 +10,8 @@ public class Entity {
 		
 	}
 	
-	public void render(GraphicsContext gc) {
-		
-		gc.fillRect(x, y, 50, 50);
-		
+	public void render() {
+				
 	}
 	
 	

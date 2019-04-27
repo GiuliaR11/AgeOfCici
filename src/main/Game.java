@@ -35,6 +35,9 @@ public class Game {
 		if(KeyboardInput.keys[GLFW_KEY_ESCAPE])
 			isRunning = false;
 		
+		if(glfwWindowShouldClose(WINDOW))
+			isRunning = false;
+		
 		if(fl >= 1 || fl <= 0)
 			spd *= -1;
 		
