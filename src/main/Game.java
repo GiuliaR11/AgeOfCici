@@ -4,26 +4,27 @@ import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.*;
 
 import controllers.KeyboardInput;
-import entity.Entity;
-import static org.lwjgl.glfw.GLFW.*;
+import entity.TestEntity;
 
 
 public class Game {
 
 	private boolean isRunning;
 	private final int FPS = 30;
-	private final int WIDTH = 800;
+	private final int WIDTH = 1270;
 	private final int HEIGHT = (int)(9.0/16.0 * WIDTH);
 	private final long WINDOW;
-
+	public static String title = " AOC ";
+	
 	float fl = 0.0f;
 	float spd = 0.05f;
-	Entity e = new Entity();
+	TestEntity e;
 
 	public Game() {
 		isRunning = true;
 		WINDOW = Window.createWindow(WIDTH,HEIGHT);
 		
+		e = new TestEntity();
 	}
 	
 	public void update() {
@@ -47,11 +48,11 @@ public class Game {
 	public void render() {
 		
 		
-		glClearColor(fl, 1 - fl, fl, 1.0f);
+	//	glClearColor(0, 0, 0, 1.0f);
 
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear the framebuffer
-
 		
+		e.render();
 		
 		glfwSwapBuffers(WINDOW);
 	}

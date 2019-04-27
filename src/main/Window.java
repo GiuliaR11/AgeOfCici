@@ -1,9 +1,11 @@
 package main;
 
 import static org.lwjgl.glfw.GLFW.*;
+import static org.lwjgl.opengl.GL13.*;
 import static org.lwjgl.system.MemoryUtil.*;
 
 import org.lwjgl.glfw.GLFWVidMode;
+import org.lwjgl.opengl.GL;
 
  /**
  * @author Cezar
@@ -40,9 +42,15 @@ public class Window {
 			glfwSetWindowPos(window,screenCenterX,screenCenterY);
 			
 			//V Sync
-			glfwSwapInterval(GLFW_TRUE);
+			glfwSwapInterval(GLFW_FALSE);
 
 			glfwShowWindow(window);
+			
+			// fara asta nu merge
+			// porneste contextul video
+			GL.createCapabilities();
+			glEnable(GL_DEPTH_TEST);
+			glActiveTexture(GL_TEXTURE1);
 			
 			return window;
 		}

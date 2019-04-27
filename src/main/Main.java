@@ -2,14 +2,13 @@ package main;
 
 import static org.lwjgl.glfw.Callbacks.*;
 import static org.lwjgl.glfw.GLFW.*;
-import static org.lwjgl.system.MemoryUtil.*;
 
 import org.lwjgl.Version;
 import org.lwjgl.glfw.GLFWErrorCallback;
-import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL;
 
 import controllers.KeyboardInput;
+import graphics.ShaderManager;
 
 public class Main {
 
@@ -40,17 +39,19 @@ public class Main {
 		if (!glfwInit())
 			throw new IllegalStateException("Unable to initialize GLFW");
 
+		
+		
 		game = new Game();
-
+		
+		
+		ShaderManager.loadAllShaders(); 
 		glfwSetKeyCallback(game.getWINDOW(), new KeyboardInput());
 
 	}
 
 	private void loop() {
 
-		// fara asta nu merge
-		// porneste contextul video
-		GL.createCapabilities();
+		
 
 		int updates = 0, renders = 0;
 		long t0, t1;
@@ -80,7 +81,8 @@ public class Main {
 
 			if (t1 - t0 >= 1000) {
 				t0 = t1;
-				System.out.println("UPS: " + updates + " FPS: " + renders);
+				
+				glfwSetWindowTitle(game.getWINDOW(), "AOC | UPS: " + updates + " FPS: " + renders);
 				updates = 0;
 				renders = 0;
 			}

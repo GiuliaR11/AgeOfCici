@@ -1,0 +1,31 @@
++--------------Commit 02----------------+
+In Shader.java:
+	-implemented isEnabled boolean, in enable(),disable()
+	-implemented in setUniform* autoenable
+	
+In FileUtils
+	buffer + '\n' because it was making a big line of code with no newline
+	
+Implemented:
+	VertexArray,Camera,ShaderManager
+	
+Added: 
+	Test.fragmentShader,Test.vertexShader
+
++--------------Commit 01----------------+
+-Implemented: 
+	Matrix4f,Vector2f,Vector3f in math
+	BufferUtils,FileUtils,ShaderUtils in utils
+	Shader,Texture in graphics
+
+
++--------------Commit 00----------------+
+-Window class setup, to clean the main
+-Keyboard class setup, to clean the main
+
+
++-----------SETUP COMMIT----------------+
+LWJGL basic setup, separated files in jar,javadoc and native
+Extracted natives
+
+-XstartOnFirstThread for MacOs

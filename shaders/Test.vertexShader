@@ -1,0 +1,18 @@
+#version 330 core
+
+layout (location = 0) in vec4 position; 
+layout (location = 1) in vec2 textureCoordinates; 
+
+uniform mat4 projectionMatrix;
+
+out DATA
+{
+	vec2 tc;
+}vs_out;
+
+void main()
+{
+	gl_Position = projectionMatrix * position;
+	vs_out.tc = textureCoordinates;
+
+}
