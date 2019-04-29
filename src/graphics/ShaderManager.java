@@ -1,11 +1,11 @@
 package graphics;
 
-import math.Matrix4f;
+import java.net.URL;
 
 /**@javadoc
  * 
  * Class that manages all shaders laoding and variable allocation
- * */
+ */
 public class ShaderManager {
 
 	///indexul atributului pentru VERTEX,TEXTURA
@@ -13,18 +13,30 @@ public class ShaderManager {
 	public static final int VERTEX_ATTRIB = 0;
 	public static final int TEXTURE_COORD_ATTRIB = 1;
 	 
-	public static Shader TEST;
+	public static Shader test;
+	public static Shader tile;
 	
 	
 	private static void loadTestShader() {
 		
-		TEST = new Shader("shaders/Test.vertexShader","shaders/Test.fragmentShader");
+		test = new Shader("/shaders/Test.vertexShader","/shaders/Test.fragmentShader");
+
+		test.setUniformMatrix4f("projectionMatrix", Camera.orthoMatrix);
+		test.setUniform1i("textureImage", 1);
+	}
+	
+	private static void loadTileShader() {
 		
-		TEST.setUniformMatrix4f("projectionMatrix", Camera.projectionMatrix);
-		TEST.setUniform1i("textureImage", 1);
+		
+		tile = new Shader("/shaders/Tile.vertexShader","/shaders/Tile.fragmentShader");
+
+		tile.setUniformMatrix4f("projectionMatrix", Camera.orthoMatrix);
+		//tile.setUniform1i("textureImage", 1);
+		
 	}
 	
 	public static void loadAllShaders() {
 		loadTestShader();
+		loadTileShader();
 	}
 }

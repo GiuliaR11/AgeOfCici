@@ -1,9 +1,10 @@
-package entity;
+package testentity;
 
 import graphics.Camera;
 import graphics.ShaderManager;
 import graphics.Texture;
 import graphics.VertexArray;
+import textures.TileAtlas;
 
 public class TestEntity {
 
@@ -92,7 +93,7 @@ public class TestEntity {
 		};
 		
 		mesh = new VertexArray(v,b,tc);
-		texture = new Texture("resources/graphics/bg.jpg",false);
+		texture = TileAtlas.GALAXY;
 		
 	}
 	
@@ -102,9 +103,9 @@ public class TestEntity {
 	
 	public void render() {
 		texture.bind();
-		ShaderManager.TEST.enable();
+		ShaderManager.test.enable();
 		mesh.render();
-		ShaderManager.TEST.disable();
+		ShaderManager.test.disable();
 		texture.unbind();
 	}
 	

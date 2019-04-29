@@ -18,7 +18,8 @@ public class Main {
 
 	public void run() {
 		System.out.println("Hello LWJGL " + Version.getVersion() + "!");
-
+		//System.out.println(getClass().getResource("/shaders/Test.vertexShader").getPath());
+		
 		init();
 		loop();
 

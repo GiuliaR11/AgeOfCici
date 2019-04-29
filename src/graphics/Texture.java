@@ -1,10 +1,11 @@
 package graphics;
 
+import static org.lwjgl.opengl.GL11.*;
+
 import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
 import java.io.IOException;
-import static org.lwjgl.opengl.GL11.*;
-import static org.lwjgl.opengl.GL13.*;
+import java.net.URL;
 
 import javax.imageio.ImageIO;
 
@@ -15,14 +16,15 @@ public class Texture {
 	private int width, height;
 	private int texture;
 
-	public Texture(String path,boolean isWrapping) {
-		texture = load(path,isWrapping);
+	public Texture(String path) {
+		texture = load(path);
 	}
 
-	private int load(String path,boolean isWrapping) {
+	private int load(String path) {
 		int[] pixels = null;
 		try {
-			BufferedImage image = ImageIO.read(new FileInputStream(path));
+			
+			BufferedImage image = ImageIO.read(new FileInputStream(System.getProperty("user.dir")+path));
 			width = image.getWidth();
 			height = image.getHeight();
 			pixels = new int[width * height];
@@ -46,10 +48,6 @@ public class Texture {
 																			// gl nearest for on)
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 		
-		if(isWrapping) {
-			glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_REPEAT);
-			glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_REPEAT);
-		}
 		
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE,BufferUtils.createIntBuffer(data));
 		glBindTexture(GL_TEXTURE_2D, 0); // se deselecteaza layerul (unbind)

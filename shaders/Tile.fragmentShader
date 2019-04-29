@@ -1,0 +1,11 @@
+#version 330 core
+
+layout (location = 0) out vec4 color;
+
+uniform vec3 tileColor;
+
+void main(){
+
+	color = vec4(tileColor.x,tileColor.y,tileColor.z,1.0);
+
+}

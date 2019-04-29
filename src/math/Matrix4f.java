@@ -39,6 +39,21 @@ public class Matrix4f {
 
 	}
 	
+	public static Matrix4f perspective(float scale,float near,float far)
+	{
+		Matrix4f result=identity();
+		result.elements[0 + 0 * 4]= scale;
+		result.elements[1 + 1 * 4]= scale;
+		result.elements[2 + 2 * 4]= - far / (far - near);
+		result.elements[3 + 3 * 4]= 0;
+		
+		result.elements[2 + 3 * 4]= -1;
+		result.elements[3 + 2 * 4]= - (far * near) / (far - near);
+		
+		return result;
+
+	}
+	
 	public static Matrix4f translate(Vector3f vector) {
 		Matrix4f result=identity();
 		result.elements[0 + 3 * 4] = vector.x;

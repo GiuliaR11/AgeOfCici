@@ -22,6 +22,11 @@ public class Window {
 		///vrem ca fereastra sa nu se poata redimensiona
 		glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE); 
 		
+		glfwWindowHint (GLFW_CONTEXT_VERSION_MAJOR, 3);
+		glfwWindowHint (GLFW_CONTEXT_VERSION_MINOR, 2);
+		glfwWindowHint (GLFW_OPENGL_PROFILE,        GLFW_OPENGL_CORE_PROFILE);
+		glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GLFW_TRUE);
+		
 		long window =  glfwCreateWindow(windowWidth, windowHeight, "Age of Cici", NULL, NULL);
 		
 		
@@ -50,6 +55,7 @@ public class Window {
 			// porneste contextul video
 			GL.createCapabilities();
 			glEnable(GL_DEPTH_TEST);
+			glEnable(GL_NORMALIZE);
 			glActiveTexture(GL_TEXTURE1);
 			
 			return window;
