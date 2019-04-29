@@ -1,11 +1,20 @@
 package graphics;
 
-import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL11.GL_NEAREST;
+import static org.lwjgl.opengl.GL11.GL_RGBA;
+import static org.lwjgl.opengl.GL11.GL_TEXTURE_2D;
+import static org.lwjgl.opengl.GL11.GL_TEXTURE_MAG_FILTER;
+import static org.lwjgl.opengl.GL11.GL_TEXTURE_MIN_FILTER;
+import static org.lwjgl.opengl.GL11.GL_UNSIGNED_BYTE;
+import static org.lwjgl.opengl.GL11.glBindTexture;
+import static org.lwjgl.opengl.GL11.glGenTextures;
+import static org.lwjgl.opengl.GL11.glTexImage2D;
+import static org.lwjgl.opengl.GL11.glTexParameteri;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
-import java.net.URL;
+import java.io.FileReader;
 
 import javax.imageio.ImageIO;
 
@@ -23,16 +32,23 @@ public class Texture {
 	private int load(String path) {
 		int[] pixels = null;
 		try {
+			File f = new File(getClass().getResource("/resources/graphics/bg.jpg").getPath());
 			
-			BufferedImage image = ImageIO.read(new FileInputStream(System.getProperty("user.dir")+path));
+			FileInputStream fis = new FileInputStream(f);
+			
+			BufferedImage image = ImageIO.read(fis);
+			
+			
 			width = image.getWidth();
 			height = image.getHeight();
 			pixels = new int[width * height];
 			image.getRGB(0, 0, width, height, pixels, 0, width);
 
-		} catch (IOException e) {
+			fis.close();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 		int[] data = new int[width * height];
 		for (int i = 0; i < width * height; i++) {
 			int a = (pixels[i] & 0xff000000) >> 24;

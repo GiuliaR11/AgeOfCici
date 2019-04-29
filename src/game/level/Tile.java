@@ -35,9 +35,9 @@ public class Tile {
 			return;
 		texture.bind();
 		ShaderManager.test.enable();
-	//	ShaderManager.tile.setUniform3f("tileColor",clr);
+		ShaderManager.tile.setUniform3f("tileColor",clr);
 		mesh.render();
-		ShaderManager.tile.disable();
+		ShaderManager.test.disable();
 		texture.unbind();
 		
 		

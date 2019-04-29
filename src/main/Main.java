@@ -10,6 +10,11 @@ import org.lwjgl.opengl.GL;
 import controllers.KeyboardInput;
 import graphics.ShaderManager;
 
+///macos runtime VM arguments
+/*
+ * -XstartOnFirstThread -Djava.awt.headless=true
+ * */
+
 public class Main {
 
 	// The window handle

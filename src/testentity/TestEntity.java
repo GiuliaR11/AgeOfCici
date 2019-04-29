@@ -93,7 +93,7 @@ public class TestEntity {
 		};
 		
 		mesh = new VertexArray(v,b,tc);
-		texture = TileAtlas.GALAXY;
+		//texture = TileAtlas.GALAXY;
 		
 	}
 	

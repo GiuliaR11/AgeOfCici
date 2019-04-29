@@ -4,6 +4,6 @@ import graphics.Texture;
 
 public class TileAtlas {
 
-	public static final Texture GALAXY = new Texture("/resources/graphics/bg.jpg");
+	public static final Texture GALAXY = new Texture("/resources/graphics/img.png");
 	
 }

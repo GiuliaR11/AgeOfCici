@@ -14,7 +14,7 @@ public class FileUtils {
 	{
 		StringBuilder result =new StringBuilder();
 		try {
-			System.out.println(System.getProperty("user.dir")+file);
+			
 			BufferedReader reader=new BufferedReader(new FileReader(System.getProperty("user.dir")+file));
 			String buffer="";
 			while((buffer = reader.readLine())!=null) {
